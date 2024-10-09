@@ -30,6 +30,6 @@ const _counterReducer = createReducer(
   })
 );
 
-export function counterReducer(state: { counter: number; } | undefined, action: Action) {
+export function counterReducer(state: any, action: Action) {
   return _counterReducer(state, action);
 }
