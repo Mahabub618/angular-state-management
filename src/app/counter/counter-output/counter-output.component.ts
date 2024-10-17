@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {CounterState} from "../state/counter.state";
 import {Subject, takeUntil} from "rxjs";
+import {getCounter} from "../state/counter.selector";
 
 @Component({
   selector: 'app-counter-output',
@@ -15,10 +16,11 @@ export class CounterOutputComponent {
   }
 
   ngOnInit(): void {
-    this.store.select('counter')
+    this.store.select(getCounter)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data) => {
-      this.counter = data.counter;
+      .subscribe((counter) => {
+        // console.log('Counter observable called');
+      this.counter = counter;
     })
   }
 
